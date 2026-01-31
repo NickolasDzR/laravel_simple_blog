@@ -34,7 +34,7 @@ class PostController extends Controller
 
         $post->create($data);
 
-        return redirect()->route('posts.index');
+        return redirect()->route('posts.index')->with('status', 'Пост успешно создан!');
     }
 
     public function edit(Post $post) {
@@ -53,11 +53,11 @@ class PostController extends Controller
 
         $post->update($data);
 
-        return redirect()->route('posts.index');
+        return redirect()->route('posts.index')->with('status', 'Пост успешно обнавлён');
     }
 
     public function destroy(Post $post) {
         $post->delete();
-        return redirect()->route('posts.index');
+        return redirect()->route('posts.index')->with('status', 'Пост успешно удален!');
     }
 }

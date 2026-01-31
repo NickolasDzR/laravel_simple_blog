@@ -19,6 +19,10 @@
         <br>
         <a href="{{ route('posts.show', $post) }}">Подробнее</a>
         <br>
-        <a href="{{ route('posts.destroy', $post) }}" data-confirm="Вы уверены?" data-method="delete" rel="nofollow">Удалить Статью {{ $post->title }}</a>
+        <form action="{{ route('posts.destroy', $post) }}" method="POST">
+            @csrf
+            @method('DELETE')
+            <button type="submit" class="btn btn-danger">Удалить</button>
+        </form>
     @endforeach
 @endsection
