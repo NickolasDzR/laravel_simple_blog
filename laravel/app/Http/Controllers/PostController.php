@@ -42,6 +42,10 @@ class PostController extends Controller
     }
 
     public function update(Request $request, Post $post) {
+        if (!Gate::allows('update-post', $post)) {
+            abort(403);
+        }
+
         $data = $request->validate([
             'title' => [
                 'required',
