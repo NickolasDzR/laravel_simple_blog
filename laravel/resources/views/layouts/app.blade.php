@@ -10,10 +10,10 @@
     <nav class="navbar navbar-light bg-light">
         <div class="container-fluid">
             <a class="navbar-brand me-auto" href="{{ route("posts.index") }}">Все посты</a>
-            <a class="navbar-brand me-auto" href="{{ route("posts.create") }}">Создать пост</a>
             @auth
+                <a class="navbar-brand me-auto" href="{{ route("posts.create") }}">Создать пост</a>
                 <a class="navbar-brand me-auto" href="#">Привет, {{ auth()->user()->name }}!</a>
-                <a class="btn btn-danger" href="{{ route("login") }}">Выйти</a>
+                <a class="btn btn-danger" href="{{ route("logout") }}">Выйти</a>
             @else
                 <a class="navbar-brand me-auto" href="{{ route("register.create") }}">Регистрация</a>
                 <a class="navbar-brand me-auto" href="{{ route("login") }}">Войти</a>

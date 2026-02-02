@@ -12,7 +12,7 @@
         <br>
         <h2>{{ $post->title }}</h2>
         <p>{{ $post->body }}</p>
-        <span>Автор: {{ $post->author }}</span>
+        <span>Автор: {{ $post->user->name }}</span>
         <br>
 
         <a href="{{ route('posts.edit', $post) }}">Редактировать пост {{ $post->id }}</a>

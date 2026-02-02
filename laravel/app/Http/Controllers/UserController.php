@@ -43,4 +43,10 @@ class UserController extends Controller
             'email' => 'Неправильная электронная почта или пароль',
         ]);
     }
+
+    public function logout() {
+        Auth::logout();
+
+        return redirect()->route('login')->with('success', 'Вы вышли из личного кабинета');
+    }
 }

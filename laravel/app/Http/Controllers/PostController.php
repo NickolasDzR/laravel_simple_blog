@@ -9,7 +9,7 @@ use Illuminate\Validation\Rule;
 class PostController extends Controller
 {
     public function index() {
-        $posts = Post::paginate();
+        $posts = Post::with('user')->orderBy('id', 'desc')->get();
 
         return view('post.index', compact('posts'));
     }
@@ -28,11 +28,13 @@ class PostController extends Controller
 
         $data = $request->validate([
             'title' => 'required|string|min:10',
-            'body' => 'required|string|min:100',
-            'author' => 'required|string',
+            'body' => 'required|string|min:10',
         ]);
 
-        $post->create($data);
+        $post->create([
+            ...$data,
+            'user_id' => auth()->id(),
+        ]);
 
         return redirect()->route('posts.index')->with('status', 'Пост успешно создан!');
     }

@@ -3,12 +3,12 @@
 @section('title', 'Создание поста')
 
 @section('content')
+    <h1>Создать новый пост</h1>
+    <br>
+    <br>
+
 {{ html()->modelForm($post, 'POST', route('posts.store'))->open() }}
 
-    {{ html()->label('Имя автора', 'author')->class('form-label') }}
-    {{ html()->input('text', 'author')->class('form-control') }}
-    <br>
-    <br>
     {{ html()->label('Название статьи', 'title')->class('form-label') }}
     {{ html()->input('text', 'title')->class('form-control') }}
     <br>
