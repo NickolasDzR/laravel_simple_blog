@@ -20,7 +20,11 @@ class PostController extends Controller
         return view('post.show', compact('post'));
     }
 
-    public function create() {
+    public function create(User $user) {
+        if (Gate::denies('create-post', $user)) {
+            abort(403);
+        }
+
         $post = new Post();
 
         return view('post.create', compact('post'));
