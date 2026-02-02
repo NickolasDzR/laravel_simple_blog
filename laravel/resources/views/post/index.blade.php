@@ -15,14 +15,18 @@
         <span>Автор: {{ $post->user->name }}</span>
         <br>
 
-        <a href="{{ route('posts.edit', $post) }}">Редактировать пост {{ $post->id }}</a>
-        <br>
+        @can('update-post', $post)
+            <a href="{{ route('posts.edit', $post) }}">Редактировать пост {{ $post->id }}</a>
+            <br>
+        @endcan
         <a href="{{ route('posts.show', $post) }}">Подробнее</a>
-        <br>
-        <form action="{{ route('posts.destroy', $post) }}" method="POST">
-            @csrf
-            @method('DELETE')
-            <button type="submit" class="btn btn-danger">Удалить</button>
-        </form>
+        @can('update-post', $post)
+            <br>
+            <form action="{{ route('posts.destroy', $post) }}" method="POST">
+                @csrf
+                @method('DELETE')
+                <button type="submit" class="btn btn-danger">Удалить</button>
+            </form>
+        @endcan
     @endforeach
 @endsection

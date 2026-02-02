@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Post;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Validation\Rule;
 
 class PostController extends Controller
@@ -40,13 +42,14 @@ class PostController extends Controller
     }
 
     public function edit(Post $post) {
+        if (Gate::denies('update-post', $post)) {
+            abort(403);
+        }
+
         return view('post.edit', compact('post'));
     }
 
     public function update(Request $request, Post $post) {
-        if (!Gate::allows('update-post', $post)) {
-            abort(403);
-        }
 
         $data = $request->validate([
             'title' => [
