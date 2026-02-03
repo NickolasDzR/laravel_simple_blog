@@ -14,6 +14,8 @@
         <a href="{{ route('posts.edit', $post) }}">Редактировать пост</a>
         <br>
         <br>
+    @endcan
+    @can("delete-post", $post)
         <a href="{{ route('posts.destroy', $post) }}" data-confirm="Вы уверены?" data-method="delete" rel="nofollow">Удалить cтатью</a>
     @endcan
     <br>

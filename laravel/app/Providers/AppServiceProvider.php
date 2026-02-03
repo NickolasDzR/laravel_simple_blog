@@ -22,12 +22,17 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        Gate::define('update-post', function (User $user, Post $post) {
-            return $user->id === $post->user_id;
-        });
-
         Gate::define('create-post', function(User $user) {
             return in_array($user->role, [2, 3]);
+        });
+
+        Gate::define('update-post', function (User $user, Post $post) {
+//            return $user->id === $post->user_id;
+            return $user->id === $post->user_id || $user->role === 3;
+        });
+
+        Gate::define('delete-post', function (User $user) {
+            return $user->role === 3;
         });
     }
 }

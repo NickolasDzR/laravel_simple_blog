@@ -20,7 +20,7 @@
             <br>
         @endcan
         <a href="{{ route('posts.show', $post) }}">Подробнее</a>
-        @can('update-post', $post)
+        @can('delete-post', $post)
             <br>
             <form action="{{ route('posts.destroy', $post) }}" method="POST">
                 @csrf

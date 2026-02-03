@@ -11,7 +11,9 @@
         <div class="container-fluid">
             <a class="navbar-brand me-auto" href="{{ route("posts.index") }}">Все посты</a>
             @auth
-                <a class="navbar-brand me-auto" href="{{ route("posts.create") }}">Создать пост</a>
+                @can('create-post')
+                    <a class="navbar-brand me-auto" href="{{ route("posts.create") }}">Создать пост</a>
+                @endcan
                 <a class="navbar-brand me-auto" href="#">Привет, {{ auth()->user()->name }}!</a>
                 <a class="btn btn-danger" href="{{ route("logout") }}">Выйти</a>
             @else

@@ -21,7 +21,7 @@ class PostController extends Controller
     }
 
     public function create(User $user) {
-        if (Gate::denies('create-post', $user)) {
+        if (Gate::denies('create-post')) {
             abort(403);
         }
 
@@ -31,6 +31,9 @@ class PostController extends Controller
     }
 
     public function store(Request $request, Post $post) {
+        if (Gate::denies('create-post')) {
+            abort(403);
+        }
 
         $data = $request->validate([
             'title' => 'required|string|min:10',
@@ -70,6 +73,10 @@ class PostController extends Controller
     }
 
     public function destroy(Post $post) {
+        if (Gate::denies('delete-post', $post)) {
+            abort(403);
+        }
+
         $post->delete();
         return redirect()->route('posts.index')->with('status', 'Пост успешно удален!');
     }
