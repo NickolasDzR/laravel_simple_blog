@@ -7,6 +7,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\Auth;
 
 class PostController extends Controller
 {
@@ -14,6 +15,17 @@ class PostController extends Controller
         $posts = Post::with('user')->orderBy('id', 'desc')->get();
 
         return view('post.index', compact('posts'));
+    }
+
+    public function home() {
+        if (!Auth::check()) {
+            return redirect()->route('login'); // перенаправляем на логин
+        }
+
+        $user = Auth::user();
+
+        $posts = $user->posts()->latest()->get();
+        return view('post.home', compact('posts', 'user'));
     }
 
     public function show(Post $post) {

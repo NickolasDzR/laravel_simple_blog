@@ -14,7 +14,7 @@
                 @can('create-post')
                     <a class="navbar-brand me-auto" href="{{ route("posts.create") }}">Создать пост</a>
                 @endcan
-                <a class="navbar-brand me-auto" href="#">Привет, {{ auth()->user()->name }}!</a>
+                <a class="navbar-brand me-auto" href="{{ route("posts.home") }}">Привет, {{ auth()->user()->name }}!</a>
                 <a class="btn btn-danger" href="{{ route("logout") }}">Выйти</a>
             @else
                 <a class="navbar-brand me-auto" href="{{ route("register.create") }}">Регистрация</a>

@@ -18,6 +18,8 @@ Route::middleware('auth')->group(function () {
     Route::patch('/posts/{post}', [PostController::class, 'update'])->name('posts.update');
 
     Route::delete('/posts/{post}', [PostController::class, 'destroy'])->name('posts.destroy');
+
+    Route::get('/home', [PostController::class, 'home'])->name('posts.home');
 });
 
 Route::get('/posts/{post}', [PostController::class, 'show'])->name('posts.show');
