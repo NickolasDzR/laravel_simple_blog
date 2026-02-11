@@ -42,6 +42,19 @@
     </div>
 
     <div class="likes_count_popup">
+        @if($post->likes->isEmpty())
+            <p>Пока твоя статья еще никому не понравилась 😢</p>
+        @else
+            <span>Кто лайкнул?</span>
+            <ul>
+                @foreach ($post->likes as $like)
+                    <li style="margin-top: 10px;">
+                        <p style="margin: 0; padding: 0;">Ник: {{ $like->user->name }}</p>
+                        <span style="margin: 0; padding: 0;">Когда: {{ $like->created_at->format('d.m.Y H:i') }}</span>
+                    </li>
+                @endforeach
+            </ul>
+        @endif
 
     </div>
 
