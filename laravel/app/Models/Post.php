@@ -18,13 +18,11 @@ class Post extends Model
         return $this->hasMany(Like::class);
     }
 
-    public function isLikedBy(User $user = null): bool
-    {
+    public function isLikedBy(User $user = null) {
         if (!$user) {
             return false; // Гость не может лайкнуть
         }
 
-        // Проверяем, есть ли лайк от этого пользователя
         return $this->likes()->where('user_id', $user->id)->exists();
     }
 }

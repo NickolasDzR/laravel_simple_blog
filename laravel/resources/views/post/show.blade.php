@@ -37,7 +37,13 @@
         </form>
     @endif
 
-    Лайков: {{ $post->likes->count() }}
+    <div class="likes_count" x-data="likes_count_popup" @mouseover="toggle">
+        Лайков: {{ $post->likes_count }}
+    </div>
+
+    <div class="likes_count_popup">
+
+    </div>
 
     <br><br>
 
