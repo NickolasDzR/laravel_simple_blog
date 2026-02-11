@@ -24,6 +24,8 @@ Route::middleware('auth')->group(function () {
 
     Route::post('/posts/{post}/like', [LikeController::class, 'store'])->name('posts.like');
     Route::delete('/posts/{post}/unlike', [LikeController::class, 'destroy'])->name('posts.unlike');
+
+    Route::get('/feed/likes', [PostController::class, 'likes_post'])->name('feed.likes');
 });
 
 Route::get('/posts/{post}', [PostController::class, 'show'])->name('posts.show');

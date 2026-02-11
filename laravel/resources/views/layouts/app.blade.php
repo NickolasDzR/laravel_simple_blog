@@ -10,16 +10,18 @@
 <div class="container">
     <nav class="navbar navbar-light bg-light">
         <div class="container-fluid">
-            <a class="navbar-brand me-auto" href="{{ route("posts.index") }}">Все посты</a>
+            <a class="navbar-brand" href="{{ route("posts.index") }}">Все посты</a>
             @auth
                 @can('create-post')
-                    <a class="navbar-brand me-auto" href="{{ route("posts.create") }}">Создать пост</a>
+                    <a class="navbar-brand" href="{{ route("posts.create") }}">Создать пост</a>
                 @endcan
-                <a class="navbar-brand me-auto" href="{{ route("posts.home") }}">Привет, {{ auth()->user()->name }}!</a>
+                <a class="navbar-brand" href="{{ route("posts.home") }}">Привет, {{ auth()->user()->name }}!</a>
+                <a class="btn btn-success" href="{{ route("feed.likes") }}">Понравившейся посты</a>
                 <a class="btn btn-danger" href="{{ route("logout") }}">Выйти</a>
+
             @else
-                <a class="navbar-brand me-auto" href="{{ route("register.create") }}">Регистрация</a>
-                <a class="navbar-brand me-auto" href="{{ route("login") }}">Войти</a>
+                <a class="navbar-brand" href="{{ route("register.create") }}">Регистрация</a>
+                <a class="navbar-brand" href="{{ route("login") }}">Войти</a>
             @endauth
         </div>
     </nav>

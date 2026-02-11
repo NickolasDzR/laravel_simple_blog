@@ -17,6 +17,12 @@ class PostController extends Controller
         return view('post.index', compact('posts'));
     }
 
+    public function likes_post() {
+        $posts = auth()->user()->likes->map(fn($like) => $like->post);
+
+        return view('post.index', compact('posts'));
+    }
+
     public function home() {
         if (!Auth::check()) {
             return redirect()->route('login'); // перенаправляем на логин
