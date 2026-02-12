@@ -18,7 +18,9 @@ class PostController extends Controller
     }
 
     public function likes_post() {
-        $posts = auth()->user()->likes->map(fn($like) => $like->post);
+        $user = auth()->user()->load('likes.post');
+
+        $posts = $user->likes->pluck('post');
 
         return view('post.index', compact('posts'));
     }
